@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7D3564F61FA03608003A06AA /* LinearAlgebra.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D3564F41FA03608003A06AA /* LinearAlgebra.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7D3564FE1FA0361E003A06AA /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3564FD1FA0361E003A06AA /* Vector.swift */; };
+		7D35650E1FA03722003A06AA /* DoubleComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35650D1FA03722003A06AA /* DoubleComparison.swift */; };
+		7D3565141FA04677003A06AA /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3565001FA0362A003A06AA /* Accelerate.framework */; };
+		7D8B4C3F1FA046EF00A1B158 /* VectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B4C3E1FA046EF00A1B158 /* VectorTests.swift */; };
+		7D8B4C411FA046EF00A1B158 /* LinearAlgebra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3564F11FA03608003A06AA /* LinearAlgebra.framework */; };
+		7D8B4C471FA0478200A1B158 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3564FD1FA0361E003A06AA /* Vector.swift */; };
+		7D8B4C481FA0478500A1B158 /* DoubleComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35650D1FA03722003A06AA /* DoubleComparison.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7D8B4C421FA046EF00A1B158 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D3564E81FA03607003A06AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D3564F01FA03608003A06AA;
+			remoteInfo = LinearAlgebra;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7D3564F11FA03608003A06AA /* LinearAlgebra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LinearAlgebra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D3564F41FA03608003A06AA /* LinearAlgebra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinearAlgebra.h; sourceTree = "<group>"; };
+		7D3564F51FA03608003A06AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D3564FD1FA0361E003A06AA /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		7D3565001FA0362A003A06AA /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		7D35650D1FA03722003A06AA /* DoubleComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleComparison.swift; sourceTree = "<group>"; };
+		7D8B4C3C1FA046EF00A1B158 /* LinearAlgebraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinearAlgebraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D8B4C3E1FA046EF00A1B158 /* VectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorTests.swift; sourceTree = "<group>"; };
+		7D8B4C401FA046EF00A1B158 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7D3564ED1FA03608003A06AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D3565141FA04677003A06AA /* Accelerate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D8B4C391FA046EF00A1B158 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D8B4C411FA046EF00A1B158 /* LinearAlgebra.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7D3564E71FA03607003A06AA = {
+			isa = PBXGroup;
+			children = (
+				7D3564F31FA03608003A06AA /* LinearAlgebra */,
+				7D8B4C3D1FA046EF00A1B158 /* LinearAlgebraTests */,
+				7D3564F21FA03608003A06AA /* Products */,
+				7D3564FF1FA0362A003A06AA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7D3564F21FA03608003A06AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7D3564F11FA03608003A06AA /* LinearAlgebra.framework */,
+				7D8B4C3C1FA046EF00A1B158 /* LinearAlgebraTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7D3564F31FA03608003A06AA /* LinearAlgebra */ = {
+			isa = PBXGroup;
+			children = (
+				7D35650C1FA03708003A06AA /* Operators */,
+				7D3564FC1FA0360F003A06AA /* Vector */,
+				7D3564F41FA03608003A06AA /* LinearAlgebra.h */,
+				7D3564F51FA03608003A06AA /* Info.plist */,
+			);
+			path = LinearAlgebra;
+			sourceTree = "<group>";
+		};
+		7D3564FC1FA0360F003A06AA /* Vector */ = {
+			isa = PBXGroup;
+			children = (
+				7D3564FD1FA0361E003A06AA /* Vector.swift */,
+			);
+			path = Vector;
+			sourceTree = "<group>";
+		};
+		7D3564FF1FA0362A003A06AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D3565001FA0362A003A06AA /* Accelerate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7D35650C1FA03708003A06AA /* Operators */ = {
+			isa = PBXGroup;
+			children = (
+				7D35650D1FA03722003A06AA /* DoubleComparison.swift */,
+			);
+			path = Operators;
+			sourceTree = "<group>";
+		};
+		7D8B4C3D1FA046EF00A1B158 /* LinearAlgebraTests */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B4C3E1FA046EF00A1B158 /* VectorTests.swift */,
+				7D8B4C401FA046EF00A1B158 /* Info.plist */,
+			);
+			path = LinearAlgebraTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7D3564EE1FA03608003A06AA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D3564F61FA03608003A06AA /* LinearAlgebra.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		7D3564F01FA03608003A06AA /* LinearAlgebra */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D3564F91FA03608003A06AA /* Build configuration list for PBXNativeTarget "LinearAlgebra" */;
+			buildPhases = (
+				7D3564EC1FA03608003A06AA /* Sources */,
+				7D3564ED1FA03608003A06AA /* Frameworks */,
+				7D3564EE1FA03608003A06AA /* Headers */,
+				7D3564EF1FA03608003A06AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LinearAlgebra;
+			productName = LinearAlgebra;
+			productReference = 7D3564F11FA03608003A06AA /* LinearAlgebra.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7D8B4C3B1FA046EF00A1B158 /* LinearAlgebraTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D8B4C441FA046EF00A1B158 /* Build configuration list for PBXNativeTarget "LinearAlgebraTests" */;
+			buildPhases = (
+				7D8B4C381FA046EF00A1B158 /* Sources */,
+				7D8B4C391FA046EF00A1B158 /* Frameworks */,
+				7D8B4C3A1FA046EF00A1B158 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7D8B4C431FA046EF00A1B158 /* PBXTargetDependency */,
+			);
+			name = LinearAlgebraTests;
+			productName = LinearAlgebraTests;
+			productReference = 7D8B4C3C1FA046EF00A1B158 /* LinearAlgebraTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7D3564E81FA03607003A06AA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Jamie Pinkham";
+				TargetAttributes = {
+					7D3564F01FA03608003A06AA = {
+						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					7D8B4C3B1FA046EF00A1B158 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 7D3564EB1FA03607003A06AA /* Build configuration list for PBXProject "LinearAlgebra" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7D3564E71FA03607003A06AA;
+			productRefGroup = 7D3564F21FA03608003A06AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7D3564F01FA03608003A06AA /* LinearAlgebra */,
+				7D8B4C3B1FA046EF00A1B158 /* LinearAlgebraTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7D3564EF1FA03608003A06AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D8B4C3A1FA046EF00A1B158 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7D3564EC1FA03608003A06AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D3564FE1FA0361E003A06AA /* Vector.swift in Sources */,
+				7D35650E1FA03722003A06AA /* DoubleComparison.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D8B4C381FA046EF00A1B158 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D8B4C471FA0478200A1B158 /* Vector.swift in Sources */,
+				7D8B4C481FA0478500A1B158 /* DoubleComparison.swift in Sources */,
+				7D8B4C3F1FA046EF00A1B158 /* VectorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7D8B4C431FA046EF00A1B158 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D3564F01FA03608003A06AA /* LinearAlgebra */;
+			targetProxy = 7D8B4C421FA046EF00A1B158 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7D3564F71FA03608003A06AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7D3564F81FA03608003A06AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7D3564FA1FA03608003A06AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = NN8FCN229L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = LinearAlgebra/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamiepinkham.LinearAlgebra;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		7D3564FB1FA03608003A06AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = NN8FCN229L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = LinearAlgebra/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamiepinkham.LinearAlgebra;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		7D8B4C451FA046EF00A1B158 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RN25F5UJ28;
+				INFOPLIST_FILE = LinearAlgebraTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamiepinkham.LinearAlgebraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		7D8B4C461FA046EF00A1B158 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RN25F5UJ28;
+				INFOPLIST_FILE = LinearAlgebraTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamiepinkham.LinearAlgebraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7D3564EB1FA03607003A06AA /* Build configuration list for PBXProject "LinearAlgebra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D3564F71FA03608003A06AA /* Debug */,
+				7D3564F81FA03608003A06AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D3564F91FA03608003A06AA /* Build configuration list for PBXNativeTarget "LinearAlgebra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D3564FA1FA03608003A06AA /* Debug */,
+				7D3564FB1FA03608003A06AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D8B4C441FA046EF00A1B158 /* Build configuration list for PBXNativeTarget "LinearAlgebraTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D8B4C451FA046EF00A1B158 /* Debug */,
+				7D8B4C461FA046EF00A1B158 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7D3564E81FA03607003A06AA /* Project object */;
+}
