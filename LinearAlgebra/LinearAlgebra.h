@@ -2,11 +2,11 @@
 //  LinearAlgebra.h
 //  LinearAlgebra
 //
-//  Created by Jamie Pinkham on 10/24/17.
+//  Created by Pinkham, Jamie on 10/25/17.
 //  Copyright © 2017 Jamie Pinkham. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for LinearAlgebra.
 FOUNDATION_EXPORT double LinearAlgebraVersionNumber;
