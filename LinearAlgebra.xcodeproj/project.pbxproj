@@ -12,6 +12,8 @@
 		7D35650E1FA03722003A06AA /* DoubleComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35650D1FA03722003A06AA /* DoubleComparison.swift */; };
 		7D3565141FA04677003A06AA /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3565001FA0362A003A06AA /* Accelerate.framework */; };
 		E31608501FA0CFBB0055A715 /* LinearAlgebra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D861EE1FA0C9EE0003C6F5 /* LinearAlgebra.framework */; };
+		E3B295631FA0D211009DB9FC /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B295621FA0D211009DB9FC /* Matrix.swift */; };
+		E3B295641FA0D211009DB9FC /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B295621FA0D211009DB9FC /* Matrix.swift */; };
 		E3D861CE1FA0C7A60003C6F5 /* LinearAlgebraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D861CD1FA0C7A60003C6F5 /* LinearAlgebraTests.swift */; };
 		E3D861D61FA0C7B50003C6F5 /* VectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B4C3E1FA046EF00A1B158 /* VectorTests.swift */; };
 		E3D862051FA0CBC60003C6F5 /* LinearAlgebra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3564F11FA03608003A06AA /* LinearAlgebra.framework */; };
@@ -43,10 +45,11 @@
 		7D3565001FA0362A003A06AA /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		7D35650D1FA03722003A06AA /* DoubleComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleComparison.swift; sourceTree = "<group>"; };
 		7D8B4C3E1FA046EF00A1B158 /* VectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorTests.swift; sourceTree = "<group>"; };
+		E3B295601FA0D1E1009DB9FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3B295621FA0D211009DB9FC /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		E3D861CB1FA0C7A60003C6F5 /* LinearAlgebraTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LinearAlgebraTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D861CD1FA0C7A60003C6F5 /* LinearAlgebraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearAlgebraTests.swift; sourceTree = "<group>"; };
 		E3D861CF1FA0C7A60003C6F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E3D861D91FA0C8DE0003C6F5 /* LinearAlgebra.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LinearAlgebra.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E3D861EE1FA0C9EE0003C6F5 /* LinearAlgebra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LinearAlgebra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D8620A1FA0CC920003C6F5 /* LinearAlgebraTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LinearAlgebraTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D862201FA0CE060003C6F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../sources/RxSwift/RxSwift/Info.plist; sourceTree = "<group>"; };
@@ -90,8 +93,9 @@
 		7D3564E71FA03607003A06AA = {
 			isa = PBXGroup;
 			children = (
-				E3D861D91FA0C8DE0003C6F5 /* LinearAlgebra.playground */,
 				7D3564F31FA03608003A06AA /* LinearAlgebra */,
+				E3B295601FA0D1E1009DB9FC /* Info.plist */,
+				7D3564F41FA03608003A06AA /* LinearAlgebra.h */,
 				E3D861CC1FA0C7A60003C6F5 /* LinearAlgebraTests */,
 				7D3564F21FA03608003A06AA /* Products */,
 				7D3564FF1FA0362A003A06AA /* Frameworks */,
@@ -115,7 +119,7 @@
 				E3D862201FA0CE060003C6F5 /* Info.plist */,
 				7D35650C1FA03708003A06AA /* Operators */,
 				7D3564FC1FA0360F003A06AA /* Vector */,
-				7D3564F41FA03608003A06AA /* LinearAlgebra.h */,
+				E3B295611FA0D1F4009DB9FC /* Matrix */,
 			);
 			path = LinearAlgebra;
 			sourceTree = "<group>";
@@ -142,6 +146,14 @@
 				7D35650D1FA03722003A06AA /* DoubleComparison.swift */,
 			);
 			path = Operators;
+			sourceTree = "<group>";
+		};
+		E3B295611FA0D1F4009DB9FC /* Matrix */ = {
+			isa = PBXGroup;
+			children = (
+				E3B295621FA0D211009DB9FC /* Matrix.swift */,
+			);
+			path = Matrix;
 			sourceTree = "<group>";
 		};
 		E3D861CC1FA0C7A60003C6F5 /* LinearAlgebraTests */ = {
@@ -334,6 +346,7 @@
 			files = (
 				7D3564FE1FA0361E003A06AA /* Vector.swift in Sources */,
 				7D35650E1FA03722003A06AA /* DoubleComparison.swift in Sources */,
+				E3B295631FA0D211009DB9FC /* Matrix.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +365,7 @@
 			files = (
 				E3D8621F1FA0CD990003C6F5 /* Vector.swift in Sources */,
 				E3D8621E1FA0CD960003C6F5 /* DoubleComparison.swift in Sources */,
+				E3B295641FA0D211009DB9FC /* Matrix.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
