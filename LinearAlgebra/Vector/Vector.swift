@@ -35,7 +35,7 @@ public struct Vector {
     public func subtract(_ vector: Vector) -> Vector {
         precondition(self.dimension == vector.dimension, "vectors must have same dimension")
         var ret = Array(repeating: 0.0, count: self.dimension)
-        vDSP_vsubD(self.values, 1, vector.values, 1, &ret, 1, vDSP_Length(self.dimension))
+        vDSP_vsubD(vector.values, 1, self.values, 1, &ret, 1, vDSP_Length(self.dimension))
         return Vector(values: ret)
     }
     
@@ -178,8 +178,25 @@ public struct Vector {
         return abs(self.normalize().dot(other.normalize())) ==~ 1.0
     }
     
-    private var isZero: Bool {
+    public var isZero: Bool {
         return self.magnitude == 0
+    }
+    
+    public func project(_ basis: Vector) -> Vector {
+        let magb = basis.magnitude
+        let adotb = self * basis
+        return (adotb / pow(magb, 2)) * basis
+    }
+    
+    public func componentOrthogonal(to basis: Vector) -> Vector {
+        let projection = componentParallel(to: basis)
+        return self.subtract(projection)
+    }
+    
+    public func componentParallel(to basis: Vector) -> Vector {
+        let normalizedBasis = basis.normalize()
+        let weight = self * normalizedBasis
+        return normalizedBasis * weight
     }
     
     //MARK: subscripting
@@ -227,8 +244,16 @@ public func + (lhs: Vector, rhs: Double) -> Vector {
     return lhs.add(rhs)
 }
 
+public func + (lhs: Double, rhs: Vector) -> Vector {
+    return rhs.add(lhs)
+}
+
 public func - (lhs: Vector, rhs: Double) -> Vector {
     return lhs.subtract(rhs)
+}
+
+public func - (lhs: Double, rhs: Vector) -> Vector {
+    return rhs.subtract(lhs)
 }
 
 public func .* (lhs: Vector, rhs: Vector) -> Vector {
@@ -243,6 +268,10 @@ public func * (lhs: Vector, rhs: Double) -> Vector {
     return lhs.multiply(rhs)
 }
 
+public func * (lhs: Double, rhs: Vector) -> Vector {
+    return rhs.multiply(lhs)
+}
+
 public prefix func - (_ a: Vector) -> Vector {
     return a.unaryMinus()
 }
@@ -252,7 +281,7 @@ public func ^ (_ a: Vector, _ p: Double) -> Vector {
 }
 
 public func angle(_ lhs: Vector, _ rhs: Vector) -> Double {
-    return acos(lhs.normalize().dot(rhs.normalize()))
+    return acos((lhs * rhs) / (lhs.magnitude * rhs.magnitude))
 }
 
 //MARK: ExpressibleByArrayLiteral
