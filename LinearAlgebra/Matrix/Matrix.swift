@@ -48,9 +48,9 @@ public struct Matrix {
     
     func asVectors() -> [Vector] {
         guard !self.values.isEmpty else { return [] }
-        let range = (0...self.columns - 1)
+        let range = (0..<self.columns - 1)
         let vectors = range.map { i -> Vector in
-            let start = i * self.rows
+            let start = i * self.columns
             let end = start + self.rows - 1
             let slice = self.values[start...end]
             return Vector(values: Array(slice))
@@ -258,10 +258,11 @@ public struct Matrix {
     }
     
     public func multiply(matrix: Matrix) -> Matrix {
-        let v1: Vector = Vector(values: self.values)
-        let v2: Vector = Vector(values: matrix.values)
-        let result: Vector = v1 .* v2
-        return Matrix(rows: self.rows, columns: self.columns, values: result.values)
+        precondition(self.columns == matrix.rows, "Input matrices dimensions not compatible with multiplication")
+        precondition(self.rows == matrix.columns, "Input matrices dimensions not compatible with multiplication")
+        var out = Matrix.zeros(rows: self.rows, columns: matrix.columns)
+        vDSP_mmulD(self.values, 1, matrix.values, 1, &out.values, 1, vDSP_Length(self.rows), vDSP_Length(matrix.columns), vDSP_Length(self.columns * matrix.rows))
+        return out
     }
     
     public func divide(matrix: Matrix) -> Matrix {
@@ -380,6 +381,10 @@ public func - (lhs: Matrix, rhs: Matrix) -> Matrix {
 }
 
 public func * (lhs: Matrix, rhs: Matrix) -> Matrix {
+    return lhs.multiply(matrix: rhs)
+}
+
+public func .* (lhs: Matrix, rhs: Matrix) -> Matrix {
     return lhs.dot(matrix: rhs)
 }
 
@@ -387,9 +392,6 @@ public func / (lhs: Matrix, rhs: Matrix) -> Matrix {
     return lhs.divide(matrix: rhs)
 }
 
-public func .* (lhs: Matrix, rhs: Matrix) -> Matrix {
-    return lhs.multiply(matrix: rhs)
-}
 //MARK: matrix double operations
 public func + (lhs: Matrix, rhs: Double) -> Matrix {
     return lhs.add(scalar: rhs)
@@ -547,19 +549,22 @@ extension Matrix: Sequence {
     }
 }
 
-extension Matrix: CustomStringConvertible {
-    public var description: String {
-        return "\(self.asVectors().map{ $0.description }.joined(separator: "\n"))"
-    }
-}
+//extension Matrix: CustomStringConvertible {
+//    public var description: String {
+//        return "\(self.asVectors().map{ $0.description }.joined(separator: "\n"))"
+//    }
+//}
 
 extension Matrix: ExpressibleByArrayLiteral {
+    //expressed in rowXcolumn
+    //let A: Matrix = [[1, 0], [2, -3], [1, 2]]
+    //let C: Matrix = [[3, -1, 0], [-1, 2, 2], [0, 3, 1], [1, 0, 1]]
     public init(arrayLiteral elements: [Double]...) {
         precondition(elements.count > 0, "must not be empty")
         precondition(elements[0].count > 0, "must not be empty")
         precondition(Set(elements.map { $0.count }).count == 1, "Input dimensions must agree")
-        columns = elements.count
-        rows = elements[0].count
+        rows = elements.count
+        columns = elements[0].count
         values = Array(elements.joined())
     }
 }

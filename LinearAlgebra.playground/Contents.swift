@@ -1,6 +1,7 @@
 //: Playground - noun: a place where people can play
 
 @testable import LinearAlgebra
+import Accelerate
 
 //let v1: Vector = [-5.955, -4.904, -1.874]
 //let v2: Vector = [-4.496, -8.755,7.103]
@@ -74,14 +75,38 @@
 //
 //print(n.values)
 
-let s = [[1.0, 2.0], [3.0, 4.0]]
-Array(s.joined())
 
-let m1: Matrix = [[1.0, 2.0], [3.0, 4.0]]
+let m2 = Matrix(vectors: [[1, 2, 1], [0, -3, 2]])
+let res = Matrix(vectors: [[3, 1, 0, 1], [-1, 2, 3, 0], [0, -2, 1, 1]])
 
-print(m1)
 
-let m2 = Matrix(vectors: [[5.0, 6.0], [7.0, 8.0]])
-let res = Matrix(vectors: [[6.0, 8.0], [10.0, 12.0]])
+func multiply(lhs: Matrix, rhs: Matrix) -> Matrix {
+    print(lhs.rows * rhs.columns)
+    var out = Matrix.zeros(rows: lhs.rows, columns: rhs.columns)
+    print(out.values.count)
+    vDSP_mmulD(lhs.values, 1, rhs.values, 1, &out.values, 1, vDSP_Length(lhs.rows), vDSP_Length(rhs.columns), vDSP_Length(lhs.columns + rhs.rows))
+    return out
+}
+
+func asVectors(matrix: Matrix) -> [Vector] {
+    guard !matrix.values.isEmpty else { return [] }
+    let range = (0..<matrix.columns - 1)
+    print(range)
+    let vectors = range.map { i -> Vector in
+        let start = i * matrix.columns
+        print(start)
+        let end = start + matrix.rows - 1
+        print(end)
+        let slice = matrix.values[start...end]
+        print(slice)
+        return Vector(values: Array(slice))
+    }
+    return vectors
+}
+
+
+let c = multiply(lhs: m2, rhs: res)
+print(c.values)
+
 
 
