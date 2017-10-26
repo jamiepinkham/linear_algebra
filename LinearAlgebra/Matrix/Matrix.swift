@@ -47,10 +47,11 @@ public struct Matrix {
     }
     
     func asVectors() -> [Vector] {
+        guard !self.values.isEmpty else { return [] }
         let range = (0...self.columns - 1)
         let vectors = range.map { i -> Vector in
-            let start = i * self.columns
-            let end = start + self.columns - 1
+            let start = i * self.rows
+            let end = start + self.rows - 1
             let slice = self.values[start...end]
             return Vector(values: Array(slice))
         }
@@ -559,7 +560,7 @@ extension Matrix: ExpressibleByArrayLiteral {
         precondition(Set(elements.map { $0.count }).count == 1, "Input dimensions must agree")
         columns = elements.count
         rows = elements[0].count
-        self.values = Array(elements.joined())
+        values = Array(elements.joined())
     }
 }
 
