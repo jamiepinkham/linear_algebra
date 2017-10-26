@@ -44,3 +44,7 @@ func <~ (left: Double, right: Double) -> Bool {
 func >~ (left: Double, right: Double) -> Bool {
     return left.distance(to: right) < -.ulpOfOne
 }
+
+func applyComparison<T>(lhs: [T], rhs: [T], f: (T, T) -> Bool) -> Int {
+    return zip(lhs, rhs).filter(f).count
+}

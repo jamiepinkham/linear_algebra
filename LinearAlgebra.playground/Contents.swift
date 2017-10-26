@@ -7,16 +7,16 @@
 //
 //print(v1.dot(v2))
 //
-let v3: Vector = [3.183, -7.627]
-let v4: Vector = [-2.668, 5.319]
-
-print(angle(v3, v4))
+//let v3: Vector = [3.183, -7.627]
+//let v4: Vector = [-2.668, 5.319]
+//
+//print(angle(v3, v4))
 //
 //
-let v5: Vector = [7.35, 0.221, 5.188]
-let v6: Vector = [2.751, 8.259, 3.985]
-let vAngle = angle(v5, v6)
-print(vAngle * 180 / .pi)
+//let v5: Vector = [7.35, 0.221, 5.188]
+//let v6: Vector = [2.751, 8.259, 3.985]
+//let vAngle = angle(v5, v6)
+//print(vAngle * 180 / .pi)
 
 
 //let v7: Vector = [-7.579,-7.88]
@@ -63,5 +63,25 @@ print(vAngle * 180 / .pi)
 //
 //let vpar = v3.componentParallel(to: b3)
 //let vorth = v3.componentOrthogonal(to: b3)
+
+//let r1: Vector = [0, 0, 0]
+//
+//let m = Matrix(vectors: [r1, r1, r1])
+//
+//let n = m.map { (v) -> Vector in
+//    return v + 1.0
+//}
+//
+//print(n.values)
+
+let s = [[1.0, 2.0], [3.0, 4.0]]
+Array(s.joined())
+
+let m1: Matrix = [[1.0, 2.0], [3.0, 4.0]]
+
+print(m1)
+
+let m2 = Matrix(vectors: [[5.0, 6.0], [7.0, 8.0]])
+let res = Matrix(vectors: [[6.0, 8.0], [10.0, 12.0]])
 
 

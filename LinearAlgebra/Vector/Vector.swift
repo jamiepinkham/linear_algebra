@@ -17,12 +17,16 @@ public struct Vector {
         dimension = self.values.count
     }
     
-    static func zeros(_ count: Int) -> Vector {
+    public static func zeros(_ count: Int) -> Vector {
         return Vector(values: Array(repeating: 0.0, count: count))
     }
     
-    static func ones(_ count: Int) -> Vector {
+    public static func ones(_ count: Int) -> Vector {
         return Vector(values: Array(repeating: 1.0, count: count))
+    }
+    
+    public static func random(count: Int) -> Vector {
+        return Vector(values: LinearAlgebra.random(from: 0.0...4095.0, count: count))
     }
     //MARK: Vector Arithmatic
     public func add(_ vector: Vector) -> Vector {
@@ -49,7 +53,7 @@ public struct Vector {
     public func divide(_ vector: Vector) -> Vector {
         precondition(self.dimension == vector.dimension, "vectors must have same dimension")
         var ret = Array(repeating: 0.0, count: self.dimension)
-        vDSP_vdivD(self.values, 1, vector.values, 1, &ret, 1, vDSP_Length(self.dimension))
+        vDSP_vdivD(vector.values, 1, self.values, 1, &ret, 1, vDSP_Length(self.dimension))
         return Vector(values: ret)
     }
     
@@ -96,7 +100,7 @@ public struct Vector {
         return Vector(values: ret)
     }
     
-    public func unaryMinus() -> Vector {
+    public func negate() -> Vector {
         var ret = Array(repeating: 0.0, count: self.dimension)
         vDSP_vnegD(self.values, 1, &ret, 1, vDSP_Length(self.dimension))
         return Vector(values: ret)
@@ -206,9 +210,7 @@ public struct Vector {
     }
 }
 
-//MARK: Operators
-infix operator .* : MultiplicationPrecedence
-
+//MARK: operators
 public func + (lhs: Vector, rhs: Vector) -> Vector {
     return lhs.add(rhs)
 }
@@ -253,7 +255,7 @@ public func - (lhs: Vector, rhs: Double) -> Vector {
 }
 
 public func - (lhs: Double, rhs: Vector) -> Vector {
-    return rhs.subtract(lhs)
+    return rhs.subtract(lhs).negate()
 }
 
 public func .* (lhs: Vector, rhs: Vector) -> Vector {
@@ -264,6 +266,12 @@ public func / (lhs: Vector, rhs: Double) -> Vector {
     return lhs.divide(rhs)
 }
 
+public func / (lhs: Double, rhs: Vector) -> Vector {
+    let v = Vector(values: Array(repeating:lhs, count: rhs.values.count))
+    return v / rhs
+}
+
+
 public func * (lhs: Vector, rhs: Double) -> Vector {
     return lhs.multiply(rhs)
 }
@@ -273,7 +281,7 @@ public func * (lhs: Double, rhs: Vector) -> Vector {
 }
 
 public prefix func - (_ a: Vector) -> Vector {
-    return a.unaryMinus()
+    return a.negate()
 }
 
 public func ^ (_ a: Vector, _ p: Double) -> Vector {
@@ -323,9 +331,6 @@ extension Vector: Comparable {
         return lhs.dimension != rhs.dimension ||
             applyComparison(lhs: lhs.values, rhs: rhs.values, f: >=~) != 0
     }
-}
-private func applyComparison<T>(lhs: [T], rhs: [T], f: (T, T) -> Bool) -> Int {
-    return zip(lhs, rhs).filter(f).count
 }
 
 //MARK: CustomStringConvertible

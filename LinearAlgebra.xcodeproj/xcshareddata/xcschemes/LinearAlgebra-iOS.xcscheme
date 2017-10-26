@@ -34,7 +34,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E3D861F61FA0CB5E0003C6F5"
+               BlueprintIdentifier = "E3D862091FA0CC920003C6F5"
                BuildableName = "LinearAlgebraTests-iOS.xctest"
                BlueprintName = "LinearAlgebraTests-iOS"
                ReferencedContainer = "container:LinearAlgebra.xcodeproj">
