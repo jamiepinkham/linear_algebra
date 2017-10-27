@@ -21,6 +21,10 @@
 		E3D862051FA0CBC60003C6F5 /* LinearAlgebra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3564F11FA03608003A06AA /* LinearAlgebra.framework */; };
 		E3D8621E1FA0CD960003C6F5 /* DoubleComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35650D1FA03722003A06AA /* DoubleComparison.swift */; };
 		E3D8621F1FA0CD990003C6F5 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3564FD1FA0361E003A06AA /* Vector.swift */; };
+		E3DDF1801FA39AD20063FFE0 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33DC6841FA25574003DFFE4 /* Operators.swift */; };
+		E3DDF1811FA39AD50063FFE0 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33DC6861FA2689C003DFFE4 /* Functions.swift */; };
+		E3DDF1831FA39B000063FFE0 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDF1821FA39B000063FFE0 /* MatrixTests.swift */; };
+		E3DDF1841FA39B000063FFE0 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3DDF1821FA39B000063FFE0 /* MatrixTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,7 @@
 		E3D861EE1FA0C9EE0003C6F5 /* LinearAlgebra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LinearAlgebra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D8620A1FA0CC920003C6F5 /* LinearAlgebraTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LinearAlgebraTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D862201FA0CE060003C6F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../../sources/RxSwift/RxSwift/Info.plist; sourceTree = "<group>"; };
+		E3DDF1821FA39B000063FFE0 /* MatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +173,7 @@
 				7D8B4C3E1FA046EF00A1B158 /* VectorTests.swift */,
 				E3D861CD1FA0C7A60003C6F5 /* PerformanceTests.swift */,
 				E3D861CF1FA0C7A60003C6F5 /* Info.plist */,
+				E3DDF1821FA39B000063FFE0 /* MatrixTests.swift */,
 			);
 			path = LinearAlgebraTests;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 					};
 					E3D862091FA0CC920003C6F5 = {
 						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -362,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3DDF1831FA39B000063FFE0 /* MatrixTests.swift in Sources */,
 				E3D861D61FA0C7B50003C6F5 /* VectorTests.swift in Sources */,
 				E3D861CE1FA0C7A60003C6F5 /* PerformanceTests.swift in Sources */,
 			);
@@ -372,7 +380,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3D8621F1FA0CD990003C6F5 /* Vector.swift in Sources */,
+				E3DDF1801FA39AD20063FFE0 /* Operators.swift in Sources */,
 				E3D8621E1FA0CD960003C6F5 /* DoubleComparison.swift in Sources */,
+				E3DDF1811FA39AD50063FFE0 /* Functions.swift in Sources */,
 				E3B295641FA0D211009DB9FC /* Matrix.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3DDF1841FA39B000063FFE0 /* MatrixTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +655,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_STYLE = Manual;
@@ -655,6 +667,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -664,6 +677,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CODE_SIGN_STYLE = Manual;

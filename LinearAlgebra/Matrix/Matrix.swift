@@ -185,6 +185,7 @@ public struct Matrix {
     }
     
     public func multiply(matrix: Matrix) -> Matrix {
+        precondition(self.columns == matrix.rows, "Matrices can't multiply.")
         var out = Matrix.zeros(rows: self.rows, columns: matrix.columns)
         vDSP_mmulD(self.values, 1, matrix.values, 1, &out.values, 1, vDSP_Length(self.rows), vDSP_Length(matrix.columns), vDSP_Length(self.columns))
         return out
@@ -198,14 +199,14 @@ public struct Matrix {
     public func add(scalar: Double) -> Matrix {
         var results = Matrix(rows: self.rows, columns: self.columns, repeating: 0.0)
         let doubles = Array(repeating: scalar, count: self.rows * self.columns)
-        cblas_daxpy(Int32(results.values.count), 1.0, doubles, 1, &results.values, 1)
+        vDSP_vsaddD(self.values, 1, doubles, &results.values, 1, vDSP_Length(self.values.count))
         return results
     }
     
     public func subtract(scalar: Double) -> Matrix {
         var results = Matrix(rows: self.rows, columns: self.columns, repeating: 0.0)
-        let doubles = Array(repeating: scalar, count: self.rows * self.columns)
-        catlas_daxpby(Int32(results.values.count), 1.0, doubles, 1, -1, &results.values, 1)
+        let doubles = Array(repeating: -scalar, count: self.rows * self.columns)
+        vDSP_vsaddD(self.values, 1, doubles, &results.values, 1, vDSP_Length(self.values.count))
         return results
     }
     
@@ -245,6 +246,12 @@ public struct Matrix {
         var result = Matrix.zeros(rows: self.rows, columns: self.columns)
         vDSP_vdivD(self.values, 1, doubles, 1, &result.values, 1, vDSP_Length(self.values.count))
         return result
+    }
+    
+    public func elementWise(matrix: Matrix) -> Matrix {
+        var results = Matrix(rows: self.rows, columns: self.columns, repeating: 0.0)
+        vDSP_vmulD(self.values, 1, matrix.values, 1, &results.values, 1, vDSP_Length(self.values.count))
+        return results
     }
     
     public func abs() -> Matrix {
@@ -366,6 +373,10 @@ public func / (lhs: Matrix, rhs: Matrix) throws -> Matrix {
     return try lhs.divide(matrix: rhs)
 }
 
+public func .* (lhs: Matrix, rhs: Matrix) -> Matrix {
+    return lhs.elementWise(matrix: rhs)
+}
+
 //MARK: matrix double operators
 public func + (lhs: Matrix, rhs: Double) -> Matrix {
     return lhs.add(scalar: rhs)
@@ -388,7 +399,10 @@ public func + (lhs: Double, rhs: Matrix) -> Matrix {
 }
 
 public func - (lhs: Double, rhs: Matrix) -> Matrix {
-    return rhs.subtract(scalar: lhs)
+    var results = Matrix(rows: rhs.rows, columns: rhs.columns, repeating: 0.0)
+    let doubles = Array(repeating: -lhs, count: rhs.rows * rhs.columns)
+    vDSP_vsaddD(doubles, 1, rhs.values, &results.values, 1, vDSP_Length(rhs.values.count))
+    return results
 }
 
 public func * (lhs: Double, rhs: Matrix) -> Matrix {
@@ -396,7 +410,10 @@ public func * (lhs: Double, rhs: Matrix) -> Matrix {
 }
 
 public func / (lhs: Double, rhs: Matrix) -> Matrix {
-    return rhs.divide(scalar: lhs)
+    var result = Matrix(rows: rhs.rows, columns: rhs.columns, repeating: 0.0)
+    let doubles = Array(repeating: lhs, count: rhs.rows * rhs.columns)
+    vDSP_vdivD(doubles, 1, rhs.values, 1, &result.values, 1, vDSP_Length(rhs.values.count))
+    return result
 }
 //MARK: matrix/vector operators
 public func + (lhs: Matrix, rhs: Vector) -> Matrix {
@@ -473,6 +490,10 @@ public prefix func - (matrix: Matrix) -> Matrix {
     return matrix.negate()
 }
 
+public prefix func + (matrix: Matrix) -> Matrix {
+    return matrix.abs()
+}
+
 //MARK: exponential operators
 public func .^ (lhs: Matrix, rhs: Int) throws -> Matrix {
     return try lhs.raise(to: rhs)
@@ -481,7 +502,7 @@ public func .^ (lhs: Matrix, rhs: Int) throws -> Matrix {
 //MARK: Equatable
 extension Matrix: Equatable {
     public static func == (lhs: Matrix, rhs: Matrix) -> Bool {
-        return lhs.rows == rhs.rows && lhs.columns == rhs.columns && applyComparison(lhs: lhs.values, rhs: rhs.values, f: ==~) == 0
+        return lhs.rows == rhs.rows && lhs.columns == rhs.columns && applyComparison(lhs: lhs.values, rhs: rhs.values, f: ==~) != 0
     }
     public static func !=(lhs: Matrix, rhs: Matrix) -> Bool {
         return !(lhs == rhs)

@@ -77,6 +77,9 @@ import Accelerate
 
 let vector: Vector = [1,2,3]
 let m = Matrix(elements: [3,4,5], [6, 7, 8])
+let m1 = Matrix(elements: [3,4,5], [6, 7, 8])
+
+m == m1
 
 for i in m {
     print(i)

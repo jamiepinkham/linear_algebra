@@ -17,7 +17,7 @@ func within<T>(_ range: ClosedRange<T>) -> T
 
 func random(from range: ClosedRange<Double>, count: Int) -> [Double] {
     var iDist = __CLPK_integer(1)
-    var iSeed = (0..<4).map { _ in __CLPK_integer(within(0.0...4095.0)) }
+    var iSeed = (0..<4).map { _ in __CLPK_integer(within(range)) }
     var n = __CLPK_integer(count)
     var x = Array(repeating: 0.0, count: count)
     dlarnv_(&iDist, &iSeed, &n, &x)
