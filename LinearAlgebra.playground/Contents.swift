@@ -75,38 +75,54 @@ import Accelerate
 //
 //print(n.values)
 
+let vector: Vector = [1,2,3]
+let m = Matrix(elements: [3,4,5], [6, 7, 8])
 
-let m2 = Matrix(vectors: [[1, 2, 1], [0, -3, 2]])
-let res = Matrix(vectors: [[3, 1, 0, 1], [-1, 2, 3, 0], [0, -2, 1, 1]])
-
-
-func multiply(lhs: Matrix, rhs: Matrix) -> Matrix {
-    print(lhs.rows * rhs.columns)
-    var out = Matrix.zeros(rows: lhs.rows, columns: rhs.columns)
-    print(out.values.count)
-    vDSP_mmulD(lhs.values, 1, rhs.values, 1, &out.values, 1, vDSP_Length(lhs.rows), vDSP_Length(rhs.columns), vDSP_Length(lhs.columns + rhs.rows))
-    return out
+for i in m {
+    print(i)
 }
 
-func asVectors(matrix: Matrix) -> [Vector] {
-    guard !matrix.values.isEmpty else { return [] }
-    let range = (0..<matrix.columns - 1)
-    print(range)
-    let vectors = range.map { i -> Vector in
-        let start = i * matrix.columns
-        print(start)
-        let end = start + matrix.rows - 1
-        print(end)
-        let slice = matrix.values[start...end]
-        print(slice)
-        return Vector(values: Array(slice))
-    }
-    return vectors
-}
+//let m2 = Matrix(vector: vector)
+//print(m2)
+//m2.rows
+//let n = m.append(vector: vector)
+//print(n.append(value: 10.0))
+//let m2 = Matrix(elements: [[1, 2, 1], [0, -3, 2]])
+//print(m2)
+//print(m2.values)
+//let A: Matrix = [[-3, 2], [5, -4]]
+//print(A.values)
+//print(A)
+//
+//
+//print(m2.multiply(matrix: res))
 
+//let m = Matrix.eye(rows: 3, columns: 3)
 
-let c = multiply(lhs: m2, rhs: res)
-print(c.values)
+//func multiply(lhs: Matrix, rhs: Matrix) -> Matrix {
+//    var out = Matrix.zeros(rows: lhs.rows, columns: rhs.columns)
+//    vDSP_mmulD(lhs.values, 1, rhs.values, 1, &out.values, 1, vDSP_Length(lhs.rows), vDSP_Length(rhs.columns), vDSP_Length(rhs.columns))
+//    return out
+//}
+//
+//func asVectors(matrix: Matrix) -> [Vector] {
+//    guard !matrix.values.isEmpty else { return [] }
+//    let range = (0..<matrix.columns - 1)
+//    print(range)
+//    let vectors = range.map { i -> Vector in
+//        let start = i * matrix.columns
+//        print(start)
+//        let end = start + matrix.rows - 1
+//        print(end)
+//        let slice = matrix.values[start...end]
+//        print(slice)
+//        return Vector(values: Array(slice))
+//    }
+//    return vectors
+//}
+//
+//print(multiply(lhs: m2, rhs: res))
+
 
 
 

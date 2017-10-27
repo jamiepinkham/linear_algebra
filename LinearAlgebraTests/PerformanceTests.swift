@@ -29,7 +29,7 @@ class PerformanceTests: XCTestCase {
     func testInvert() {
         measure {
             do {
-                _ = try self.a.inverse()
+                _ = try self.a.inversed()
             } catch {
                 print("non-invertible matrix")
             }
@@ -51,21 +51,21 @@ class PerformanceTests: XCTestCase {
     
     func testTranspose() {
         measure {
-            _ = self.a.transpose()
+            _ = self.a.transposed()
         }
     }
     
-//    func testMultiply() {
-//        measure {
-//            _ = self.a * self.b
-//        }
-//    }
-//    
-//    func testSigmoid() {
-//        measure {
-//            _ = 1 ./ (1 + exp(-self.a))
-//        }
-//    }
+    func testMultiply() {
+        measure {
+            _ = self.a * self.b
+        }
+    }
+    
+    func testSigmoid() {
+        measure {
+            _ = 1 / (1 + (-self.a).exp())
+        }
+    }
     
     func testReLU() {
         measure {

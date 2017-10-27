@@ -340,4 +340,11 @@ extension Vector: CustomStringConvertible {
     }
 }
 
+extension Vector: Sequence {
+    
+    public func makeIterator() -> IndexingIterator<[Double]> {
+        return self.values.makeIterator()
+    }
+}
+
 
