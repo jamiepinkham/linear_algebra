@@ -1,6 +1,7 @@
 //: Playground - noun: a place where people can play
 
 @testable import LinearAlgebra
+import Accelerate
 
 //let v1: Vector = [-5.955, -4.904, -1.874]
 //let v2: Vector = [-4.496, -8.755,7.103]
@@ -74,14 +75,54 @@
 //
 //print(n.values)
 
-let s = [[1.0, 2.0], [3.0, 4.0]]
-Array(s.joined())
+let vector: Vector = [1,2,3]
+let m = Matrix(elements: [3,4,5], [6, 7, 8])
 
-let m1: Matrix = [[1.0, 2.0], [3.0, 4.0]]
+for i in m {
+    print(i)
+}
 
-print(m1)
+//let m2 = Matrix(vector: vector)
+//print(m2)
+//m2.rows
+//let n = m.append(vector: vector)
+//print(n.append(value: 10.0))
+//let m2 = Matrix(elements: [[1, 2, 1], [0, -3, 2]])
+//print(m2)
+//print(m2.values)
+//let A: Matrix = [[-3, 2], [5, -4]]
+//print(A.values)
+//print(A)
+//
+//
+//print(m2.multiply(matrix: res))
 
-let m2 = Matrix(vectors: [[5.0, 6.0], [7.0, 8.0]])
-let res = Matrix(vectors: [[6.0, 8.0], [10.0, 12.0]])
+//let m = Matrix.eye(rows: 3, columns: 3)
+
+//func multiply(lhs: Matrix, rhs: Matrix) -> Matrix {
+//    var out = Matrix.zeros(rows: lhs.rows, columns: rhs.columns)
+//    vDSP_mmulD(lhs.values, 1, rhs.values, 1, &out.values, 1, vDSP_Length(lhs.rows), vDSP_Length(rhs.columns), vDSP_Length(rhs.columns))
+//    return out
+//}
+//
+//func asVectors(matrix: Matrix) -> [Vector] {
+//    guard !matrix.values.isEmpty else { return [] }
+//    let range = (0..<matrix.columns - 1)
+//    print(range)
+//    let vectors = range.map { i -> Vector in
+//        let start = i * matrix.columns
+//        print(start)
+//        let end = start + matrix.rows - 1
+//        print(end)
+//        let slice = matrix.values[start...end]
+//        print(slice)
+//        return Vector(values: Array(slice))
+//    }
+//    return vectors
+//}
+//
+//print(multiply(lhs: m2, rhs: res))
+
+
 
 
