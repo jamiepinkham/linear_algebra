@@ -80,15 +80,29 @@ public struct Matrix {
     }
     
     public static func eye(rows: Int, columns: Int) -> Matrix {
+        return Matrix.diag(rows: rows, columns: columns, value: 1.0)
+    }
+    
+    public static func diag(rows: Int, columns: Int, value: Double) -> Matrix {
         let vectors: [[Double]] = (0..<rows).map { i in
             var row = Array(repeating: 0.0, count: columns)
             if (i < columns) {
-                row[i] = 1.0
+                row[i] = value
             }
             return row
         }
         return Matrix(elements: vectors)
-        
+    }
+    
+    public static func diag(rows: Int, columns: Int, values: [Double]) -> Matrix {
+        let vectors: [[Double]] = (0..<rows).map { i in
+            var row = Array(repeating: 0.0, count: columns)
+            if (i < columns) {
+                row[i] = values[i]
+            }
+            return row
+        }
+        return Matrix(elements: vectors)
     }
     
     public static func random(rows: Int, columns: Int) -> Matrix {
@@ -158,18 +172,68 @@ public struct Matrix {
     public func inversed() throws -> Matrix {
         precondition(self.rows == self.columns, "Matrix dimensions must agree")
         
-        var matrix = Matrix(matrix: self)
-        var N = __CLPK_integer(sqrt(Double(matrix.values.count)))
-        var pivots = [__CLPK_integer](repeating: 0, count: Int(N))
-        var workspace = [Double](repeating: 0.0, count: Int(N))
+        var inMatrix = self
+        var N = __CLPK_integer(sqrt(Double(self.values.count)))
+        var pivots = Array(repeating: 0 as __CLPK_integer, count: Int(N))
+        var workspace = Array(repeating: 0.0 as Double, count: Int(N))
         var error : __CLPK_integer = 0
-        
-        withUnsafeMutablePointer(to: &N) {
-            dgetrf_($0, $0, &matrix.values, $0, &pivots, &error)
-            dgetri_($0, &matrix.values, $0, &pivots, &workspace, $0, &error)
+        withUnsafeMutablePointer(to: &N) { N in
+            dgetrf_(N, N, &inMatrix.values, N, &pivots, &error)
+            dgetri_(N, &inMatrix.values, N, &pivots, &workspace, N, &error)
         }
-        if (error != 0) { throw MatrixAlgebraError.nonInvertible }
-        return matrix
+        return inMatrix
+    }
+    
+    public func pseudoinversed() -> Matrix {
+        return self
+    }
+    
+    public func singularValueDecomposition() -> (Matrix, Matrix, Matrix) {
+        var _A  = self.transposed()
+        
+        var job = Int8(65)
+        
+        var _m = __CLPK_integer(_A.columns);
+        var _n = __CLPK_integer(_A.rows);
+        
+        var lda = _m;
+        var ldu = _m;
+        var ldvt = _n;
+        
+        var s = [Double](repeating: 0.0, count: Int(_n))
+        var u = [Double](repeating: 0.0, count: Int(ldu*_m))
+        var vt = [Double](repeating: 0.0, count: Int(ldvt*_n))
+        
+        var wkopt : __CLPK_doublereal = 0
+        var lwork : __CLPK_integer = -1;
+        var info : __CLPK_integer = 0
+        
+        var iwork : [__CLPK_integer] = [__CLPK_integer](repeating: 0, count: Int(8*Swift.min(_n,_m)))
+        
+        dgesdd_(&job, &_m, &_n, &_A.values, &lda, &s, &u, &ldu, &vt, &ldvt, &wkopt, &lwork, &iwork, &info)
+        
+        lwork = __CLPK_integer(wkopt);
+        var work = [Double](repeating: 0.0, count: Int(lwork))
+        
+        dgesdd_(&job, &_m, &_n, &_A.values, &lda, &s, &u, &ldu, &vt, &ldvt, &work, &lwork, &iwork, &info)
+        
+        /* Check for convergence */
+        if( info > 0 ) {
+            print( "The algorithm computing SVD failed to converge." );
+//            return (-1, nil, nil, nil)
+        }
+        
+        if( info < 0 ) {
+            print( "Wrong Parameters provided." );
+//            return (-1, nil, nil, nil)
+        }
+        
+        /* Get outputs */
+        let U = Matrix(rows: Int(ldu), columns: Int(_m), values: u )
+        let VT = Matrix(rows: Int(ldvt), columns: Int(_n), values: vt)
+        let S = Matrix.diag(rows: Int(ldu), columns: Int(_n), values: s)
+        
+        return (U.transposed(), S, VT.transposed())
     }
     //MARK: mathematic functions
     public func add(matrix: Matrix) -> Matrix {
@@ -553,8 +617,8 @@ extension Matrix: CustomStringConvertible {
         var description = ""
         
         for i in 0..<rows {
-            let contents = (0..<columns).map({ "\(self[i, $0])" }).joined(separator: "\t")
-            description += "[\t\(contents)\t\n]"
+            let contents = (0..<columns).map({ "\(self[i, $0])\t" }).joined(separator: "\t")
+            description += "[\(contents)]\n"
         }
         
         return description

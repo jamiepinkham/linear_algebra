@@ -75,28 +75,31 @@ import Accelerate
 //
 //print(n.values)
 
-let vector: Vector = [1,2,3]
-let m = Matrix(elements: [3,4,5], [6, 7, 8])
-let m1 = Matrix(elements: [3,4,5], [6, 7, 8])
+//let vector: Vector = [1,2,3]
+let m = Matrix(elements: [1, 2, 3], [0, 1, 4], [5, 6, 0])
+print(m.singularValueDecomposition())
+//let m1 = Matrix(elements: [3,4,5], [6, 7, 8])
+//
+//m == m1
+//
+//for i in m {
+//    print(i)
+//}
 
-m == m1
-
-for i in m {
-    print(i)
-}
-
-//let m2 = Matrix(vector: vector)
-//print(m2)
-//m2.rows
 //let n = m.append(vector: vector)
-//print(n.append(value: 10.0))
+//print(n)
+//let a = try? n.inversed()
+//print(try n.inversed())
+
+
+//print(try n.inversed() * n)
 //let m2 = Matrix(elements: [[1, 2, 1], [0, -3, 2]])
 //print(m2)
 //print(m2.values)
 //let A: Matrix = [[-3, 2], [5, -4]]
 //print(A.values)
 //print(A)
-//
+
 //
 //print(m2.multiply(matrix: res))
 
